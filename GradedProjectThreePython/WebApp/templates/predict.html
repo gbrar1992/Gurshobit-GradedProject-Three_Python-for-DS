@@ -13,7 +13,7 @@
   <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-5">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">ABC Bank</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
                 </li>
                  {% if session.loggedIn %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('predictionFunction') }}">Predict</a>
+                  <a class="nav-link" href="{{ url_for('prediction') }}">Predict</a>
                 </li>
                   {% endif %}
                 <li class="nav-item dropdown">
@@ -42,7 +42,123 @@
               </ul>
             </div>
           </nav>
-
+            <main role="main" class="container">
+                <div class="row align-items-center align-content-center">
+                    <div class="col-md-12">
+                         <div class="jumbotron">
+                            <h1>House Loan Eligibility Prediction</h1>
+                            <p class="lead">Please Enter the details to check the House Loan Eligibility</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 mx-auto">
+                        <div class="card p-3">
+                            {% if isEligible %}
+                                <h3 class="text-success text-center">{{ message }}</h3>
+                            {% else %}
+                                <h3 class="text-danger text-center">{{ message }}</h3>
+                            {% endif %}
+                            <form action="{{ url_for('prediction')}}" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-control" name="Gender" id="gender" required="required">
+                                                <option value="1">Male</option>
+                                                <option value="0">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="married">Marital Status</label>
+                                            <select name="Married" class="form-control" id="married" required="required">
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dependents">Dependents</label>
+                                            <input name="Dependents" class="form-control" id="dependents" required="required" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="education">Education</label>
+                                            <select name="Education" class="form-control" id="education" required="required">
+                                                <option value="1">Graduate</option>
+                                                <option value="0">Non Graduate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="semployed">Self Employed</label>
+                                            <select name="Self_Employed" class="form-control" id="semployed" required="required">
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="income">Applicant Income</label>
+                                            <input name="Income" class="form-control" id="income" type="number" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="amount">Loan Amount (in thousands)</label>
+                                            <input name="Loan_Amount" class="form-control" id="amount" type="number" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="term">Loan Term (in months)</label>
+                                            <input name="Loan_Term" class="form-control" id="term" type="number" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="history">Credit History</label>
+                                            <select name="Credit_History" class="form-control" id="history" required="required">
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="area">Property Area</label>
+                                            <select name="Property_Area" class="form-control" id="area" required="required">
+                                                <option value="0">Urban</option>
+                                                <option value="1">Semi-urban</option>
+                                                <option value="2">Rural</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-3">
+                                            <button id="sub" type="submit" class="btn btn-success btn-sm">Check Eligibility</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
     </div>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
